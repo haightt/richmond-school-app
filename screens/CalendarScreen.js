@@ -19,11 +19,12 @@ const CalendarScreen = props => {
                 renderEmptyDate={() => { return (<View />) }}
                 
                 theme={{
-                    selectedDayBackgroundColor: '#E1BC41',
-                    selectedDayTextColor: '#382478',
-                    dotColor: '#382478',
-                    selectedDotColor: '#382478',
-                    dayTextColor: '#4C1E52',
+                    selectedDayBackgroundColor: '#E1BC41', //accent
+                    selectedDayTextColor: '#4C1E52', //dark accent
+                    dotColor: '#7A5580', //primary
+                    selectedDotColor: '#4C1E52', //dark accent 
+                    todayTextColor: '#E1BC41', //accent
+                    dayTextColor: '#7A5580', //primary
                     agendaDayTextColor: '#4C1E52',
                     agendaKnobColor: '#4C1E52',
                     agendaTodayColor: '#E1BC41',
