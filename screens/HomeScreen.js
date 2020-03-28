@@ -37,8 +37,8 @@ const styles = StyleSheet.create({
 
     image: {
         resizeMode: 'contain',
-        height: Dimensions.get('window').height < 750 ? (Dimensions.get('window').height < 700 ? 300 : 350) : 420,
-        width: Dimensions.get('window').height < 750 ? (Dimensions.get('window').height < 700 ? 300 : 350) : 420,
+        height: Dimensions.get('window').height < 750 ? (Dimensions.get('window').height < 670 ? 300 : 350) : 420,
+        width: Dimensions.get('window').height < 750 ? (Dimensions.get('window').height < 670 ? 300 : 350) : 420,
         paddingVertical: 10
     },
 

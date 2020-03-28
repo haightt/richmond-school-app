@@ -13,7 +13,7 @@ return (<View style={styles.container}>
 const styles = StyleSheet.create({
     container: { 
         flexDirection: 'row',
-        paddingTop: Dimensions.get('window').height >= 600 ? (Platform.OS === 'android' ? 60 : 40) : 30,
+        paddingTop: Dimensions.get('window').height >= 740 ? (Platform.OS === 'android' ? 60 : 40) : 30,
         paddingBottom: 10,
         paddingHorizontal: 5,
         backgroundColor: Colors.accent,
@@ -28,7 +28,7 @@ const styles = StyleSheet.create({
     },
     text: {
         fontFamily: 'open-sans-bold',
-        fontSize: Dimensions.get('window').height >= 600 ? (Platform.OS === 'android' ? 34 : 29) : 28,
+        fontSize: Dimensions.get('window').width >= 400 ? (Platform.OS === 'android' ? 34 : 29) : 28,
         textAlign: 'right',
         color: Colors.darkerAccent
     }
