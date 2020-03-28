@@ -5,7 +5,10 @@ import { AppLoading } from 'expo';
 
 import Colors from './constants/Colors';
 import RichmondNavigator from './navigation/RichmondNavigator';
+import { enableScreens} from 'react-native-screens';
 
+
+enableScreens();
 
 
 const fetchFonts = () => {
