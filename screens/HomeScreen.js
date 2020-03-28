@@ -6,8 +6,11 @@ const HomeScreen = props => {
     return (
         <View style={styles.container}>
             <Text style={styles.headerText}>Richmond School District</Text>
-            
-                <Image style={styles.image} source={require('../images/rlogo.png')}></Image>
+            <Image style={styles.image} source={require('../images/rlogo.png')}></Image>
+            <Text style={styles.upNextText} numberOfLines={3}>The next upcoming event is:
+            <Text style={styles.eventText}>{'\n'}placeholder event</Text>
+                <Text style={styles.timeText}>{'\n'}Time</Text>
+            </Text>
         </View>
     )
 };
@@ -28,15 +31,36 @@ const styles = StyleSheet.create({
         textShadowRadius: 5,
         color: Colors.accent,
         fontWeight: '800',
-        margin: 15
+        marginTop: 15,
+        marginBottom: 5
     },
 
     image: {
         resizeMode: 'contain',
-        height: Dimensions.get('window').height < 600 ? 300 : 420,
-        width: Dimensions.get('window').height < 600 ? 300 : 420,
-        paddingVertical: 15
+        height: Dimensions.get('window').height < 750 ? (Dimensions.get('window').height < 700 ? 300 : 350) : 420,
+        width: Dimensions.get('window').height < 750 ? (Dimensions.get('window').height < 700 ? 300 : 350) : 420,
+        paddingVertical: 10
     },
+
+    upNextText: {
+        fontFamily: 'open-sans-bold',
+        fontSize: Dimensions.get('window').height < 600 ? 16 : 20,
+        textAlign: 'center',
+        color: 'white',
+        textShadowColor: 'black',
+        textShadowRadius: 2
+    },
+
+    eventText: {
+        textTransform: 'uppercase',
+        color: Colors.accent,
+        fontSize: Dimensions.get('window').height < 600 ? 18 : 24,
+    },
+
+    timeText: {
+        color: Colors.accent,
+        fontSize: Dimensions.get('window').height < 600 ? 16 : 22
+    }
 
 
 });

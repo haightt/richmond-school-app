@@ -15,7 +15,7 @@ const tabScreenConfig = {
         screen: HomeScreen,
         navigationOptions: {
             tabBarLabel: 'Home',
-            tabBarIcon: ({ tintColor }) => {
+            tabBarIcon: () => {
                 return <TouchableOpacity>
                     <Image source={require('../images/home.png')} style={{
                         width: Dimensions.get('window').height >= 600 ? 70 : 50,
@@ -32,7 +32,7 @@ const tabScreenConfig = {
         screen: CalendarScreen,
         navigationOptions: {
             tabBarLabel: 'Events',
-            tabBarIcon: ({ tintColor }) => {
+            tabBarIcon: () => {
                 return <TouchableOpacity>
                     <Image source={require('../images/calendar.png')} style={{
                         width: Dimensions.get('window').height >= 600 ? 70 : 50,
