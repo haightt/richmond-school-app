@@ -30,7 +30,8 @@ const styles = StyleSheet.create({
         fontFamily: 'open-sans-bold',
         fontSize: Dimensions.get('window').width >= 400 ? (Platform.OS === 'android' ? 34 : 29) : 28,
         textAlign: 'right',
-        color: Colors.darkerAccent
+        color: Colors.darkerAccent,
+        paddingEnd: 3
     }
 });
 
