@@ -1,6 +1,5 @@
 import React from 'react';
 import { createBottomTabNavigator } from 'react-navigation-tabs';
-import colors from '../constants/Colors';
 import { Image, Dimensions } from 'react-native';
 import { createAppContainer } from 'react-navigation';
 import HomeScreen from '../screens/HomeScreen';
@@ -8,7 +7,7 @@ import CalendarScreen from '../screens/CalendarScreen';
 import LunchScreen from '../screens/LunchScreen';
 import StaffScreen from '../screens/StaffScreen';
 import Colors from '../constants/Colors';
-import { TouchableHighlight, TouchableOpacity } from 'react-native-gesture-handler';
+import {TouchableOpacity } from 'react-native-gesture-handler';
 
 
 const tabScreenConfig = {
