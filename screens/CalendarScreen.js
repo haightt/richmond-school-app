@@ -2,7 +2,7 @@ import React from 'react';
 import { Text, View, StyleSheet } from 'react-native';
 import RichHeader from '../components/RichHeader';
 import { Agenda } from 'react-native-calendars';
-import { Colors } from '../constants/Colors';
+import Colors from '../constants/Colors';
 
 
 
@@ -33,7 +33,7 @@ const CalendarScreen = props => {
                     agendaDayTextColor: '#4C1E52',
                     agendaKnobColor: '#4C1E52',
                     agendaTodayColor: '#3500FF',
-                    agendaDayNumColor: '#7A5580'
+                    agendaDayNumColor: '#7A5580',
                 }}
             />
             </View>
@@ -49,7 +49,7 @@ const styles = StyleSheet.create({
     },
     calendarContainer: {
         flex:1,
-        paddingBottom: 20
+        paddingVertical: 15
     }
 });
 

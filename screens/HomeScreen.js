@@ -25,14 +25,15 @@ const styles = StyleSheet.create({
 
     headerText: {
         fontFamily: 'open-sans-bold',
-        fontSize: Dimensions.get('window').height < 600 ? 32 : 45,
+        fontSize: Dimensions.get('window').height < 600 ? 32 : 43,
         textAlign: 'center',
         textShadowColor: Colors.darkAccent,
-        textShadowRadius: 5,
+        textShadowRadius: 2,
         color: Colors.accent,
         fontWeight: '800',
         marginTop: 15,
-        marginBottom: 5
+        marginBottom: 5,
+        marginHorizontal: 5
     },
 
     image: {

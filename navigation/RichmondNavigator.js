@@ -18,8 +18,8 @@ const tabScreenConfig = {
             tabBarIcon: () => {
                 return <TouchableOpacity>
                     <Image source={require('../images/home.png')} style={{
-                        width: Dimensions.get('window').height >= 600 ? 70 : 50,
-                        height: Dimensions.get('window').height >= 600 ? 70 : 50,
+                        width: Dimensions.get('window').height >= 600 ? 60 : 40,
+                        height: Dimensions.get('window').height >= 600 ? 60 : 40,
                         resizeMode: 'contain'
                     }}>
                     </Image>
@@ -35,8 +35,8 @@ const tabScreenConfig = {
             tabBarIcon: () => {
                 return <TouchableOpacity>
                     <Image source={require('../images/calendar.png')} style={{
-                        width: Dimensions.get('window').height >= 600 ? 70 : 50,
-                        height: Dimensions.get('window').height >= 600 ? 70 : 50,
+                        width: Dimensions.get('window').height >= 600 ? 60 : 40,
+                        height: Dimensions.get('window').height >= 600 ? 60 : 40,
                         resizeMode: 'contain'
                     }}>
                     </Image>
@@ -52,8 +52,8 @@ const tabScreenConfig = {
             tabBarIcon: () => {
                 return <TouchableOpacity>
                     <Image source={require('../images/lunch.png')} style={{
-                        width: Dimensions.get('window').height >= 600 ? 70 : 50,
-                        height: Dimensions.get('window').height >= 600 ? 70 : 50,
+                        width: Dimensions.get('window').height >= 600 ? 60 : 40,
+                        height: Dimensions.get('window').height >= 600 ? 60 : 40,
                         resizeMode: 'contain'
                     }}>
                     </Image>
@@ -69,8 +69,8 @@ const tabScreenConfig = {
             tabBarIcon: () => {
                 return <TouchableOpacity>
                     <Image source={require('../images/staff.png')} style={{
-                        width: Dimensions.get('window').height >= 600 ? 70 : 50,
-                        height: Dimensions.get('window').height >= 600 ? 70 : 50,
+                        width: Dimensions.get('window').height >= 600 ? 60 : 40,
+                        height: Dimensions.get('window').height >= 600 ? 60 : 40,
                         resizeMode: 'contain'
                     }}>
                     </Image>

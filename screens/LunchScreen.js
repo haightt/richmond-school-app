@@ -47,7 +47,7 @@ const styles = StyleSheet.create({
     },
     calendarContainer: {
         flex:1,
-        paddingBottom: 20
+        paddingVertical: 15
     }
 });
 
