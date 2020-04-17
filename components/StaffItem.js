@@ -7,9 +7,9 @@ const StaffItem = props => {
         <View style={styles.card}>
             
                 <Text style={styles.nameText}>{props.first} {props.last}</Text>
-                <Text style={styles.detailText}>{props.title}</Text>
-                <Text style={styles.detailText}>Phone number: 262-538-1360 Ext. {props.ext}</Text>
-                <Text style={styles.detailText}>Email Adress: {props.email}</Text>
+                <Text style={styles.importantText}>{props.title}</Text>
+                <Text style={styles.importantText}>Phone number: <Text style={styles.detailText}>262-538-1360 Ext. {props.ext}</Text> </Text>
+                <Text style={styles.importantText}>Email Adress: <Text style={styles.detailText}>{props.email}</Text></Text>
             
         </View>
     );
@@ -40,15 +40,18 @@ const styles = StyleSheet.create({
 
     nameText: {
         fontFamily: 'open-sans-bold',
-        fontSize: 24,
+        fontSize: 20,
         textAlign: 'left',
         marginHorizontal: 10,
         marginTop: 10,
         color: Colors.darkAccent
     },
     detailText: {
-        fontFamily: 'open-sans',
-        fontSize: 16,
+        fontFamily: 'open-sans'
+    },
+    importantText: {
+        fontFamily: 'open-sans-bold',
+        fontSize: 14,
         color: Colors.darkerAccent,
         textAlign: 'left',
         marginHorizontal: 10,

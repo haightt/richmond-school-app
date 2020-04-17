@@ -2,6 +2,7 @@ import React from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 import RichHeader from '../components/RichHeader';
 import { Agenda } from 'react-native-calendars';
+import Colors from '../constants/Colors';
 
 
 const LunchScreen = props => {
@@ -22,8 +23,8 @@ const LunchScreen = props => {
                 renderEmptyDate={() => { return (<View />) }}
                 
                 theme={{
-                    selectedDayBackgroundColor: '#E1BC41', //accent
-                    selectedDayTextColor: '#4C1E52', //dark accent
+                    selectedDayBackgroundColor: Colors.accent, //accent
+                    selectedDayTextColor: Colors.darkAccent, //dark accent
                     selectedDotColor: '#4C1E52', //dark accent 
                     dotColor: '#7A5580', //primary
                     todayTextColor: '#3500FF', //accent
@@ -31,7 +32,10 @@ const LunchScreen = props => {
                     agendaDayTextColor: '#4C1E52',
                     agendaKnobColor: '#4C1E52',
                     agendaTodayColor: '#3500FF',
-                    agendaDayNumColor: '#7A5580'
+                    agendaDayNumColor: '#7A5580',
+                    textDayFontFamily: 'open-sans',
+                    textMonthFontFamily: 'open-sans-bold',
+                    textDayHeaderFontFamily: 'open-sans-bold'
                 }}
             />
             </View>

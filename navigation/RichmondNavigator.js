@@ -93,7 +93,12 @@ const AppTabNavigator = createBottomTabNavigator(tabScreenConfig, {
             height: Dimensions.get('window').height >= 600 ? 100 : 80,
             backgroundColor: Colors.accent,
             borderTopEndRadius: 15,
-            borderTopStartRadius: 15
+            borderTopStartRadius: 15,
+            shadowColor: 'black',
+            shadowOffset: {width: 0, height: 2},
+            shadowOpacity: 0.25,
+            shadowRadius: 10,
+            elevation: 5
 
         },
     },

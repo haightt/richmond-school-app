@@ -19,8 +19,12 @@ const styles = StyleSheet.create({
         backgroundColor: Colors.accent,
         width: '100%',
         justifyContent: 'space-between',
-        alignItems: 'center'
-        
+        alignItems: 'center',
+        shadowColor: 'black',
+        shadowOffset: {width: 0, height: 2},
+        elevation: 5,
+        shadowOpacity: 0.5,
+        shadowRadius: 10
     },
     image: {
         height: Dimensions.get('window').height >= 600 ? 60 : 40,
@@ -28,7 +32,7 @@ const styles = StyleSheet.create({
     },
     text: {
         fontFamily: 'open-sans-bold',
-        fontSize: Dimensions.get('window').width >= 400 ? (Platform.OS === 'android' ? 34 : 29) : 28,
+        fontSize: Dimensions.get('window').width >= 400 ? (Platform.OS === 'android' ? 30 : 25) : 24,
         textAlign: 'right',
         color: Colors.darkerAccent,
         paddingEnd: 3

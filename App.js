@@ -1,16 +1,26 @@
 import React, { useState } from 'react';
-import { StyleSheet, Text, View, Image } from 'react-native';
+import { View } from 'react-native';
 import * as Font from 'expo-font';
 import { AppLoading } from 'expo';
+import { createStore, combineReducers, applyMiddleware } from 'redux';
+import ReduxThunk from 'redux-thunk';
+import { Provider } from 'react-redux';
 
 import Colors from './constants/Colors';
 import RichmondNavigator from './navigation/RichmondNavigator';
-import { enableScreens} from 'react-native-screens';
+import { enableScreens } from 'react-native-screens';
+import staffReducer from './store/reducers/staff';
+
 
 
 enableScreens();
 
+const rootReducer = combineReducers({
+  staff: staffReducer
+});
 
+
+const store = createStore(rootReducer, applyMiddleware(ReduxThunk));
 const fetchFonts = () => {
   return Font.loadAsync({
     'open-sans': require('./assets/fonts/OpenSans-Regular.ttf'),
@@ -32,9 +42,11 @@ export default function App() {
   };
 
   return (
-    <View style={{flex:1, backgroundColor: Colors.primary}}>
+    <Provider store={store}>
+    <View style={{ flex: 1, backgroundColor: Colors.primary }}>
       <RichmondNavigator />
     </View>
+    </Provider>
   );
 
 
