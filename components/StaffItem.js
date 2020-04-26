@@ -19,43 +19,38 @@ const styles = StyleSheet.create({
     card: {
         justifyContent: 'space-around',
         backgroundColor: 'white',
-        borderColor: Colors.primary,
+        borderColor: Colors.darkAccent,
         borderRadius: 10,
-        borderWidth: 2,
+        borderWidth: 1.5,
         elevation: 2,
-        shadowColor: 'black',
+        shadowColor: Colors.darkAccent,
         shadowOffset: {width: 0,height: 2},
-        shadowOpacity: 0.26,
+        shadowOpacity: 0.5,
         shadowRadius:  5,
-        marginVertical: 10,
-        marginHorizontal: 15
+        marginVertical: 7,
+        marginHorizontal: 10,
+        paddingVertical: 10,
+        paddingHorizontal: 10
     },
-    name: {
-        flexDirection: 'row',
-    },
-    detailContainer: {
-        justifyContent: 'space-around',
-        padding: 5
-    },
-
     nameText: {
         fontFamily: 'open-sans-bold',
         fontSize: 20,
         textAlign: 'left',
-        marginHorizontal: 10,
-        marginTop: 10,
-        color: Colors.darkAccent
+        color: Colors.darkAccent,
+        marginBottom: 2
     },
     detailText: {
-        fontFamily: 'open-sans'
+        fontFamily: 'open-sans',
+        color: Colors.darkerAccent,
+        fontSize: 14
     },
     importantText: {
         fontFamily: 'open-sans-bold',
-        fontSize: 14,
-        color: Colors.darkerAccent,
+        fontSize: 16,
+        color: Colors.darkAccent,
         textAlign: 'left',
         marginHorizontal: 10,
-        marginVertical: 5
+        marginVertical: 2
     }
 
 });

@@ -13,17 +13,17 @@ import * as staffActions from '../store/actions/staff';
 const StaffScreen = props => {
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState();
-    const [searchTerm, setSearchTerm] = useState('');
-    const [data, setData] = useState(staff);
+    const [searchTerm, setSearchTerm] = useState();
     const staff = useSelector(state => state.staff.staffMembers);
     const dispatch = useDispatch();
+    const [isSearched, setIsSearched] = useState(false);
 
     const loadStaff = useCallback(async () => {
         setError(null);
         setIsLoading(true);
         try {
             await dispatch(staffActions.loadStaff());
-            
+
         } catch (err) {
             setError(err.message)
         }
@@ -39,17 +39,20 @@ const StaffScreen = props => {
 
     useEffect(() => {
         loadStaff();
-    }, [dispatch, loadStaff]);
+        setData(staff);
+    }, []);
 
+    const [data, setData] = useState(staff);
     const textChangeHandler = event => {
         setSearchTerm(event);
+        setIsSearched(true);
     }
 
-    useEffect(()=> {
+    useEffect(() => {
         const searchItem = searchTerm;
-        const results = staff.filter(staffMember => staffMember.firstName.includes(searchItem) 
-        || staffMember.lastName.includes(searchItem) 
-        || staffMember.jobTitle.includes(searchItem) );
+        const results = staff.filter(staffMember => staffMember.firstName.includes(searchItem)
+            || staffMember.lastName.includes(searchItem)
+            || staffMember.jobTitle.includes(searchItem));
         setData(results)
     }, [searchTerm]);
 
@@ -81,27 +84,43 @@ const StaffScreen = props => {
         <View style={styles.container}>
             <View style={{ alignSelf: 'flex-start' }}><RichHeader title='Staff Directory' /></View>
             <View style={styles.search}>
-                <TextInput 
-                    style={styles.textInput} 
-                    onChangeText={textChangeHandler} 
+                <TextInput
+                    style={styles.textInput}
+                    onChangeText={textChangeHandler}
                     value={searchTerm}
-                    />
+                />
                 <Ionicons name={Platform.OS === 'android' ? 'md-search' : 'ios-search'} size={35} color={Colors.darkerAccent} />
             </View>
-            <FlatList
-                data={data}
-                keyExtractor={item => item.emailAddress}
-                renderItem={
-                    itemData => (
-                        <StaffItem
-                            first={itemData.item.firstName}
-                            last={itemData.item.lastName}
-                            title={itemData.item.jobTitle}
-                            ext={itemData.item.extension}
-                            email={itemData.item.emailAddress}
-                        />
-                    )
-                } />
+            {isSearched ?
+                <FlatList
+                    data={data}
+                    keyExtractor={item => item.emailAddress}
+                    renderItem={
+                        itemData => (
+                            <StaffItem
+                                first={itemData.item.firstName}
+                                last={itemData.item.lastName}
+                                title={itemData.item.jobTitle}
+                                ext={itemData.item.extension}
+                                email={itemData.item.emailAddress}
+                            />
+                        )
+                    } />
+                : <FlatList
+                    data={staff}
+                    keyExtractor={item => item.emailAddress}
+                    renderItem={
+                        itemData => (
+                            <StaffItem
+                                first={itemData.item.firstName}
+                                last={itemData.item.lastName}
+                                title={itemData.item.jobTitle}
+                                ext={itemData.item.extension}
+                                email={itemData.item.emailAddress}
+                            />
+                        )
+                    } />
+                }
         </View>
     )
 };

@@ -5,22 +5,25 @@ import { AppLoading } from 'expo';
 import { createStore, combineReducers, applyMiddleware } from 'redux';
 import ReduxThunk from 'redux-thunk';
 import { Provider } from 'react-redux';
+import {composeWithDevTools} from 'redux-devtools-extension'
 
 import Colors from './constants/Colors';
 import RichmondNavigator from './navigation/RichmondNavigator';
 import { enableScreens } from 'react-native-screens';
 import staffReducer from './store/reducers/staff';
+import lunchReducer from './store/reducers/lunch';
 
 
 
 enableScreens();
 
 const rootReducer = combineReducers({
-  staff: staffReducer
+  staff: staffReducer,
+  lunch: lunchReducer
 });
 
 
-const store = createStore(rootReducer, applyMiddleware(ReduxThunk));
+const store = createStore(rootReducer, composeWithDevTools (applyMiddleware(ReduxThunk)));
 const fetchFonts = () => {
   return Font.loadAsync({
     'open-sans': require('./assets/fonts/OpenSans-Regular.ttf'),
