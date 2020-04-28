@@ -26,12 +26,12 @@ const LunchScreen = props => {
         setIsLoading(false);
     }, [dispatch, setIsLoading, setError])
 
-    useEffect(() => {
-        const willFocusSub = props.navigation.addListener('willFocus', loadLunch);
-        return () => {
-            willFocusSub.remove();
-        };
-    }, [loadLunch]);
+    // useEffect(() => {
+    //     const willFocusSub = props.navigation.addListener('willFocus', loadLunch);
+    //     return () => {
+    //         willFocusSub.remove();
+    //     };
+    // }, [loadLunch]);
 
     useEffect(() => {
         loadLunch();
@@ -45,7 +45,7 @@ const LunchScreen = props => {
 
     if (error) {
         return <View style={styles.container}>
-            <View style={{ alignSelf: 'flex-start' }}><RichHeader title='Staff Directory' /></View>
+            <View style={{ alignSelf: 'flex-start' }}><RichHeader title='Lunch' /></View>
             <View style={styles.centered}>
                 <Text style={styles.errorText}>{error.toString()} </Text>
                 <Button title='Try Again' color={Colors.accent} onPress={loadLunch} />
@@ -55,7 +55,7 @@ const LunchScreen = props => {
 
     if (isLoading) {
         return <View style={styles.container}>
-            <View style={{ alignSelf: 'flex-start' }}><RichHeader title='Staff Directory' /></View>
+            <View style={{ alignSelf: 'flex-start' }}><RichHeader title='Lunch' /></View>
             <View style={styles.centered}>
                 <ActivityIndicator size='large' color={Colors.accent} />
             </View>

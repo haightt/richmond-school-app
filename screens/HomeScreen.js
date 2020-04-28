@@ -1,15 +1,99 @@
-import React from 'react';
-import { Text, View, StyleSheet, Image, Dimensions } from 'react-native';
+import React, { useState, useCallback, useEffect } from 'react';
+import { Text, View, StyleSheet, Image, Dimensions, Button, ActivityIndicator } from 'react-native';
+import { useSelector, useDispatch } from 'react-redux';
+
 import Colors from '../constants/Colors';
+import * as eventsActions from '../store/actions/events';
 
 const HomeScreen = props => {
+
+    const [isLoading, setIsLoading] = useState(false);
+    const [error, setError] = useState();
+    const dispatch = useDispatch();
+
+    const loadEvents = useCallback(async () => {
+        setError(null);
+        setIsLoading(true);
+        try {
+            await dispatch(eventsActions.loadEvents());
+
+        } catch (err) {
+            setError(err.message)
+        }
+        setIsLoading(false);
+    }, [dispatch, setIsLoading, setError])
+
+    // useEffect(() => {
+    //     const willFocusSub = props.navigation.addListener('willFocus', loadEvents);
+    //     return () => {
+    //         willFocusSub.remove();
+    //     };
+    // }, [loadEvents]);
+
+    useEffect(() => {
+        loadEvents();
+    }, [loadEvents]);
+
+    const events = useSelector(state => state.events.events)
+
+    //Calculates the current time with adjustment for timezone for use in graying out calendar dates
+
+    const date = new Date();
+    const timeOffset = date.getTimezoneOffset() * 60000;
+    const timestamp = Date.now() - timeOffset;
+    const currentDate = new Date(Date.now() - timeOffset);
+    var year = currentDate.getFullYear();
+    var month = '0' + (currentDate.getMonth() + 1);
+    var day = '0' + currentDate.getDate();
+    const formattedDate = year + '-' + month.substr(-2) + '-' + day.substr(-2);
+
+    let eventlist = [];
+    let nextEvent = {};
+
+    const findNextEvent = (data) => {
+        Object.keys(data).forEach(key => {
+            if (key >= formattedDate) {
+                for (let i = 0; i < data[key].length; i++) {
+                    eventlist.push(data[key][i]);
+                };
+            }
+        })
+        for (let i = 0; i < eventlist.length; i++) {
+            if (eventlist[i].timestamp >= timestamp) {
+                nextEvent = eventlist[i];
+                break;
+            }
+        };
+    };
+
+
+    findNextEvent(events);
+    
+
+    if (error) {
+        return <View style={styles.container}>
+            <View style={styles.centered}>
+                <Text style={styles.errorText}>{error.toString()} </Text>
+                <Button title='Try Again' color={Colors.accent} onPress={loadEvents} />
+            </View>
+        </View>
+    }
+
+    if (isLoading) {
+        return <View style={styles.container}>
+            <View style={styles.centered}>
+                <ActivityIndicator size='large' color={Colors.accent} />
+            </View>
+        </View>
+    }
+
     return (
         <View style={styles.container}>
             <Text style={styles.headerText}>Richmond School District</Text>
             <Image style={styles.image} source={require('../images/rlogo.png')}></Image>
             <Text style={styles.upNextText} numberOfLines={3}>The next upcoming event is:
-            <Text style={styles.eventText}>{'\n'}placeholder event</Text>
-                <Text style={styles.timeText}>{'\n'}Time</Text>
+                <Text style={styles.eventText}>{'\n'}{nextEvent.title}</Text>
+                <Text style={styles.timeText}>{'\n'}{nextEvent.time}</Text>
             </Text>
         </View>
     )

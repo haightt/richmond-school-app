@@ -12,14 +12,15 @@ import RichmondNavigator from './navigation/RichmondNavigator';
 import { enableScreens } from 'react-native-screens';
 import staffReducer from './store/reducers/staff';
 import lunchReducer from './store/reducers/lunch';
-
+import eventsReducer from './store/reducers/events';
 
 
 enableScreens();
 
 const rootReducer = combineReducers({
   staff: staffReducer,
-  lunch: lunchReducer
+  lunch: lunchReducer,
+  events: eventsReducer
 });
 
 

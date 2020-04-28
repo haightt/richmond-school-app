@@ -12,14 +12,15 @@ const EventItem = props => {
 
 const styles = StyleSheet.create({
     eventContainer:{
-        justifyContent: 'space-between',
+        flex: 1,
+        justifyContent: 'center',
         alignItems: 'flex-start',
         backgroundColor: 'white',
         borderColor: Colors.primary,
         borderRadius: 10,
         borderWidth: 1,
         marginRight: 10,
-        marginVertical: 5,
+        marginVertical: 2,
         padding: 5,
         elevation: 2,
         shadowColor: Colors.darkAccent,
