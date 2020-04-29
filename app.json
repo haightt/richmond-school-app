@@ -1,21 +1,20 @@
 {
   "expo": {
-    "name": "Blank Template",
+    "name": "Richmond School District Parent App",
     "slug": "richmond-school-app",
     "privacy": "public",
     "sdkVersion": "36.0.0",
     "platforms": [
       "ios",
-      "android",
-      "web"
+      "android"
     ],
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/appicon.png",
     "splash": {
-      "image": "./assets/splash.png",
+      "image": "./assets/richsplash.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#7A5580"
     },
     "updates": {
       "fallbackToCacheTimeout": 0
@@ -24,7 +23,13 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": false
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/appicon-adaptive.png",
+        "backgroundColor": "#7A5580"
+      }
     }
   }
 }
