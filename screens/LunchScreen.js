@@ -11,30 +11,27 @@ import NoData from '../components/NoData';
 
 const LunchScreen = props => {
     const [isLoading, setIsLoading] = useState(false);
+    const [isRefreshing, setIsRefreshing] = useState(false);
     const [error, setError] = useState();
     const dispatch = useDispatch();
 
     const loadLunch = useCallback(async () => {
         setError(null);
-        setIsLoading(true);
+        setIsRefreshing(true);
         try {
             await dispatch(lunchActions.loadLunch());
 
         } catch (err) {
             setError(err.message)
         }
-        setIsLoading(false);
-    }, [dispatch, setIsLoading, setError])
-
-    // useEffect(() => {
-    //     const willFocusSub = props.navigation.addListener('willFocus', loadLunch);
-    //     return () => {
-    //         willFocusSub.remove();
-    //     };
-    // }, [loadLunch]);
+        setIsRefreshing(false);
+    }, [dispatch, setIsRefreshing, setError])
 
     useEffect(() => {
-        loadLunch();
+        setIsLoading(true);
+        loadLunch().then(() => {
+            setIsLoading(false);
+        });
     }, [loadLunch]);
 
     const lunches = useSelector(state => state.lunch.lunches)
@@ -77,6 +74,8 @@ const LunchScreen = props => {
                 }}
                 renderEmptyDate={() => { return <EmptyDay text='No lunch served' /> }}
                 renderEmptyData={() => { return <NoData text='No lunch. Choose a different day!' /> }}
+                onRefresh={loadLunch}
+                refreshing={isRefreshing}
                 theme={{
                     selectedDayBackgroundColor: Colors.accent, //accent
                     selectedDayTextColor: Colors.darkAccent, //dark accent

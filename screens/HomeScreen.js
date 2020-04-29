@@ -23,12 +23,12 @@ const HomeScreen = props => {
         setIsLoading(false);
     }, [dispatch, setIsLoading, setError])
 
-    // useEffect(() => {
-    //     const willFocusSub = props.navigation.addListener('willFocus', loadEvents);
-    //     return () => {
-    //         willFocusSub.remove();
-    //     };
-    // }, [loadEvents]);
+    useEffect(() => {
+        const willFocusSub = props.navigation.addListener('willFocus', loadEvents);
+        return () => {
+            willFocusSub.remove();
+        };
+    }, [loadEvents]);
 
     useEffect(() => {
         loadEvents();
@@ -79,22 +79,17 @@ const HomeScreen = props => {
         </View>
     }
 
-    if (isLoading) {
-        return <View style={styles.container}>
-            <View style={styles.centered}>
-                <ActivityIndicator size='large' color={Colors.accent} />
-            </View>
-        </View>
-    }
-
     return (
         <View style={styles.container}>
             <Text style={styles.headerText}>Richmond School District</Text>
             <Image style={styles.image} source={require('../images/rlogo.png')}></Image>
-            <Text style={styles.upNextText} numberOfLines={3}>The next upcoming event is:
+            {isLoading ? (<ActivityIndicator size='small' color={Colors.accent} />) :
+            (
+                <Text style={styles.upNextText} numberOfLines={3}>The next upcoming event is:
                 <Text style={styles.eventText}>{'\n'}{nextEvent.title}</Text>
                 <Text style={styles.timeText}>{'\n'}{nextEvent.time}</Text>
             </Text>
+            )}
         </View>
     )
 };

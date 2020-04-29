@@ -12,30 +12,25 @@ import * as eventsActions from '../store/actions/events';
 
 const CalendarScreen = props => {
     const [isLoading, setIsLoading] = useState(false);
+    const [isRefreshing, setIsRefreshing] = useState(false);
     const [error, setError] = useState();
     const dispatch = useDispatch();
 
     const loadEvents = useCallback(async () => {
         setError(null);
-        setIsLoading(true);
+        setIsRefreshing(true);
         try {
             await dispatch(eventsActions.loadEvents());
 
         } catch (err) {
             setError(err.message)
         }
-        setIsLoading(false);
-    }, [dispatch, setIsLoading, setError])
-
-    // useEffect(() => {
-    //     const willFocusSub = props.navigation.addListener('willFocus', loadEvents);
-    //     return () => {
-    //         willFocusSub.remove();
-    //     };
-    // }, [loadEvents]);
+        setIsRefreshing(false);
+    }, [dispatch, setIsRefreshing, setError])
 
     useEffect(() => {
-        loadEvents();
+        setIsLoading(true)
+        loadEvents().then(() => {setIsLoading(false)});
     }, [loadEvents]);
 
     const events = useSelector(state => state.events.events)
@@ -72,6 +67,8 @@ const CalendarScreen = props => {
                 renderItem={(items) => { return <EventItem title={items.title} time={items.time} description={items.description} /> }}
                 renderEmptyDate={() => { return <EmptyDay text='No events' /> }}
                 renderEmptyData={() => { return <NoData text='No events. Choose a different day!' /> }}
+                onRefresh={loadEvents}
+                refreshing={isRefreshing}
 
                 theme={{
                     selectedDayBackgroundColor: Colors.accent, //accent

@@ -13,6 +13,7 @@ import * as staffActions from '../store/actions/staff';
 const StaffScreen = props => {
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState();
+    const [isRefreshing, setIsRefreshing] = useState(false);
     const [searchTerm, setSearchTerm] = useState();
     const staff = useSelector(state => state.staff.staffMembers);
     const dispatch = useDispatch();
@@ -20,26 +21,21 @@ const StaffScreen = props => {
 
     const loadStaff = useCallback(async () => {
         setError(null);
-        setIsLoading(true);
+        setIsRefreshing(true);
         try {
             await dispatch(staffActions.loadStaff());
 
         } catch (err) {
             setError(err.message)
         }
-        setIsLoading(false);
-    }, [dispatch, setIsLoading, setError]);
+        setIsRefreshing(false);
+    }, [dispatch, setIsRefreshing, setError]);
 
     useEffect(() => {
-        const willFocusSub = props.navigation.addListener('willFocus', loadStaff);
-        return () => {
-            willFocusSub.remove();
-        };
-    }, [loadStaff]);
-
-    useEffect(() => {
-        loadStaff();
-        setData(staff);
+        setIsLoading(true);
+        loadStaff().then(() => {
+            setIsLoading(false);
+        });
     }, []);
 
     const [data, setData] = useState(staff);
@@ -95,6 +91,8 @@ const StaffScreen = props => {
                 <FlatList
                     data={data}
                     keyExtractor={item => item.emailAddress}
+                    onRefresh={loadStaff}
+                    refreshing={isRefreshing}
                     renderItem={
                         itemData => (
                             <StaffItem
@@ -109,6 +107,8 @@ const StaffScreen = props => {
                 : <FlatList
                     data={staff}
                     keyExtractor={item => item.emailAddress}
+                    onRefresh={loadStaff}
+                    refreshing={isRefreshing}
                     renderItem={
                         itemData => (
                             <StaffItem
